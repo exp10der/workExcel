@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DocumentFormat.OpenXml.Packaging;
 using lol;
@@ -21,5 +22,14 @@ internal class Program
     {
         var list = new List<Import>();
         IterateRowsAndCells("work.xlsx", list);
+
+        var group = list.GroupBy(n => n.ObjectBilder).ToDictionary(n=>n.Key);
+
+
+        foreach (var item in group)
+        {
+            Console.WriteLine(item.Key); 
+        }
+
     }
 }

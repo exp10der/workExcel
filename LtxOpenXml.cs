@@ -56,13 +56,13 @@ namespace lol
             return new Import()
             {
                 ObjectBilder = arr[0].GetString(),
-                K=arr[1].GetString(),
+                K = arr[1].GetString(),
                 Status = arr[2].GetString(),
-                Area = Double.Parse(arr[3].GetString(),CultureInfo.InvariantCulture),
-                PriceMeter =Decimal.Parse(arr[4].GetString()),
-                PriceApartment = Decimal.Parse(arr[5].GetString(),CultureInfo.InvariantCulture),
+                Area = Double.Parse(arr[3].GetString(), CultureInfo.InvariantCulture),
+                PriceMeter = Decimal.Parse(arr[4].GetString()),
+                PriceApartment = Decimal.Parse(arr[5].GetString(), CultureInfo.InvariantCulture),
                 CountDayArmor = Convert.ToInt32(arr[6].GetString()),
-                DayArmor = Convert.ToDateTime(arr[7].GetString()) ,
+                DayArmor = Convert.ToDateTime(arr[7].GetString()),
                 Access = int.Parse(arr[8].GetString()),
                 Floor = int.Parse(arr[9].GetString()),
                 LevelRoom = int.Parse(arr[10].GetString()),
@@ -90,8 +90,6 @@ namespace lol
         {
             return SharedString ?? Value;
         }
-
-
     }
 
     public static class LocalExtensions
@@ -104,7 +102,7 @@ namespace lol
                     .GetXDocument()
                     .Root
                     .Element(s + "sheetData")
-                    .Elements(s + "row").Skip(4)
+                    .Elements(s + "row").Skip(4) // TODO : Хардкод откуда начинается таблица
                 select new Row(worksheetPart)
                 {
                     RowElement = row,
