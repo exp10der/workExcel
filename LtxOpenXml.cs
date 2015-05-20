@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
-using System.IO;
 using DocumentFormat.OpenXml.Packaging;
-using lol;
 
-namespace Microsoft.Examples.LtxOpenXml
+namespace lol
 {
-
     public class Row
     {
         public XElement RowElement { get; set; }
@@ -55,10 +53,6 @@ namespace Microsoft.Examples.LtxOpenXml
         {
             var arr = Cells().ToArray();
 
-            //var g = new Import();
-            //g.DayArmor = DateTime.Parse(arr[7].GetString());
-            
-
             return new Import()
             {
                 ObjectBilder = arr[0].GetString(),
@@ -74,8 +68,7 @@ namespace Microsoft.Examples.LtxOpenXml
                 LevelRoom = int.Parse(arr[10].GetString()),
                 Room = arr[11].GetString()
             };
-
-            throw  new Exception();
+            //throw  new NotImplementedException();
         }
     }
 
@@ -103,7 +96,6 @@ namespace Microsoft.Examples.LtxOpenXml
 
     public static class LocalExtensions
     {
-
         public static IEnumerable<Row> Rows(this WorksheetPart worksheetPart)
         {
             XNamespace s = "http://schemas.openxmlformats.org/spreadsheetml/2006/main";
@@ -129,8 +121,6 @@ namespace Microsoft.Examples.LtxOpenXml
                 sb.Append(func(item));
             return sb.ToString();
         }
-
-
         public static XDocument GetXDocument(this OpenXmlPart part)
         {
             XDocument xdoc = part.Annotation<XDocument>();
